@@ -19,21 +19,41 @@ public class UI {
         // values!!!!
 
 
-            //hiddenroom
-        createbackground(1, 50, 50, 700, 300,
-                "/resources/hiddenroom(3).png");
-            //bedroom
-        createbackground(2, 50, 50, 700, 300,
-                "/resources/bedroom(7).jpg");
-
+        //living room
+        createbackground(1, 50, 50, 700, 325,
+                "/resources/livingroom.jpg");
+        //sunroom
+        createbackground(2, 50, 50, 700, 325,
+                "/resources/sun_room.jpg");
+        //bathroom
+        createbackground(3, 50, 50, 700, 325,
+                "/resources/bathroom.jpg");
+        //dining room
+        createbackground(4, 50, 50, 700, 325,
+                "/resources/diningroom.jpg");
+        //study
+        createbackground(5, 50, 50, 700, 325,
+                "/resources/study.jpg");
+        //entrance
+        createbackground(6, 50, 50, 700, 325,
+                "/resources/entrance.jpg");
+        //bedroom
+        createbackground(7, 50, 50, 700, 325,
+                "/resources/bedroom.jpg");
+        //attic
+        createbackground(8, 50, 50, 700, 325,
+                "/resources/attic.jpg");
+        //hidden room
+        createbackground(9, 50, 50, 700, 325,
+                "/resources/sun_room.jpg");
 
         //objects
-            //lipstick
+        //lipstick
         createobject(1,400, 150, 100, 100,
                 "/resources/lipstick.png",
                 "What's This?", "Look Closer", "Pick Up",
                 "this_lipstick", "closer_lipstick", "pick_up_lipstick");
-            //plant
+        //plant
         createobject(1,300, 160, 100, 100,
                 "/resources/carnivorous-plant.png",
                 "What's This?", "Look Closer", "Pick Up",
