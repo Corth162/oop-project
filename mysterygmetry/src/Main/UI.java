@@ -39,7 +39,10 @@ public class UI {
                 "What's This?", "Look Closer", "Pick Up",
                 "this_plant", "closer_plant", "pick_up_plant");
 
-
+        createarrowleft(1,0,150,
+                "<--", "left");
+        createarrowright(1,650,150,
+                "-->","right");
     }
 
     public void createmainfield() {
@@ -169,5 +172,44 @@ public class UI {
         //regardless of the order they're added in.
 
     }
-    
+
+    public void createarrowleft(int bgNUM, int x, int y, String arrowFileNm, String Constant) {
+        JButton arrowButton = new JButton(arrowFileNm);
+        arrowButton.setBounds(x, y, 50, 50);
+        arrowButton.setBackground(Color.GRAY);
+        arrowButton.setOpaque(true);  // Ensures the background color shows up
+        arrowButton.setFocusPainted(false);
+        arrowButton.addActionListener(gm.ahandler);
+        arrowButton.setActionCommand(Constant);
+
+        // Ensure bgPanel has a null layout for absolute positioning
+        if (bgPanel[bgNUM].getLayout() != null) {
+            bgPanel[bgNUM].setLayout(null);
+        }
+
+        bgPanel[bgNUM].add(arrowButton);
+        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // Bring it to the front
+        bgPanel[bgNUM].revalidate();
+        bgPanel[bgNUM].repaint();
+    }
+
+    public void createarrowright(int bgNUM, int x, int y, String arrowFileNm, String Constant) {
+        JButton arrowButton = new JButton(arrowFileNm);
+        arrowButton.setBounds(x, y, 50, 50);
+        arrowButton.setBackground(Color.BLUE);
+        arrowButton.setOpaque(true);  // Ensures the background color shows up
+        arrowButton.setFocusPainted(false);
+        arrowButton.addActionListener(gm.ahandler);
+        arrowButton.setActionCommand(Constant);
+
+        // Ensure bgPanel has a null layout for absolute positioning
+        if (bgPanel[bgNUM].getLayout() != null) {
+            bgPanel[bgNUM].setLayout(null);
+        }
+
+        bgPanel[bgNUM].add(arrowButton);
+        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // Bring it to the front
+        bgPanel[bgNUM].revalidate();
+        bgPanel[bgNUM].repaint();
+    }
 }
