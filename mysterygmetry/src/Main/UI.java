@@ -1,68 +1,123 @@
 package Main;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Objects;
 import javax.swing.*;
 
 //tried doing extends jframe dont do that.
 public class UI {
+    public Window GameApp;
     GameManager gm;
     JFrame window;
     public JTextArea messageText;
     public JPanel[] bgPanel = new JPanel[10];
     public JLabel[] bgLable = new JLabel[10];
+    private JFrame frame;
+    
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    JPanel inventoryPanel;
+    public JPanel BookLabel, PlantLabel, NoteLabel, LipstickLabel;
 
     public UI(GameManager gm) {
         this.gm = gm;
         createmainfield(); // constructor, makes the window, and also holds the sample text which ima change later duh
-
-        // values!!!!
-
-
-        //living room
-        createbackground(1, 50, 50, 700, 325,
+        
+    //values!!!!
+        //rooms
+            //1)living room
+            createbackground(1, 50, 50, 700, 325,
                 "/resources/livingroom.jpg");
-        //sunroom
-        createbackground(2, 50, 50, 700, 325,
+            //2)sunroom
+            createbackground(2, 50, 50, 700, 325,
                 "/resources/sun_room.jpg");
-        //bathroom
-        createbackground(3, 50, 50, 700, 325,
+            //3)bathroom
+            createbackground(3, 50, 50, 700, 325,
                 "/resources/bathroom.jpg");
-        //dining room
-        createbackground(4, 50, 50, 700, 325,
+            //4)dining room
+            createbackground(4, 50, 50, 700, 325,
                 "/resources/diningroom.jpg");
-        //study
-        createbackground(5, 50, 50, 700, 325,
+            //5)study
+            createbackground(5, 50, 50, 700, 325,
                 "/resources/study.jpg");
-        //entrance
-        createbackground(6, 50, 50, 700, 325,
+            //6)entrance
+            createbackground(6, 50, 50, 700, 325,
                 "/resources/entrance.jpg");
-        //bedroom
-        createbackground(7, 50, 50, 700, 325,
+            //7)bedroom
+            createbackground(7, 50, 50, 700, 325,
                 "/resources/bedroom.jpg");
-        //attic
-        createbackground(8, 50, 50, 700, 325,
+            //8)attic
+            createbackground(8, 50, 50, 700, 325,
                 "/resources/attic.jpg");
-        //hidden room
-        createbackground(9, 50, 50, 700, 325,
+            //9)hidden room
+            createbackground(9, 50, 50, 700, 325,
                 "/resources/sun_room.jpg");
-
         //objects
-        //lipstick
-        createobject(1,400, 150, 100, 100,
+            //lipstick
+            createobject(1,400, 150, 100, 100,
                 "/resources/lipstick.png",
                 "What's This?", "Look Closer", "Pick Up",
                 "this_lipstick", "closer_lipstick", "pick_up_lipstick");
-        //plant
-        createobject(1,300, 160, 100, 100,
+            //plant
+            createobject(2,300, 160, 100, 100,
                 "/resources/carnivorous-plant.png",
                 "What's This?", "Look Closer", "Pick Up",
                 "this_plant", "closer_plant", "pick_up_plant");
+            //book
+            createobject(5,300, 160, 100, 100,
+                "/resources/white-book.png",
+                "What's This?", "Look Closer", "Pick Up",
+                "this_book", "closer_book", "pick_up_book");
+            //envelope
+            createobject(6,450, 160, 100, 100,
+                "/resources/envelope.png",
+                "What's This?", "Look Closer", "Pick Up",
+                "this_note", "closer_note", "pick_up_note");
+        //arrows
+            //1
+            createarrowleft(1,0,150,
+                    "<--", "right8");
+            createarrowright(1,650,150,
+                "-->","right2");
+            //2
+            createarrowleft(2,0,150,
+                "<--", "left1");
+            createarrowright(2,650,150,
+                "-->","right3");
+            //3
+            createarrowleft(3,0,150,
+                "<--", "left2");
+            createarrowright(3,650,150,
+                "-->","right4");
+            //4
+            createarrowleft(4,0,150,
+                "<--", "left3");
+            createarrowright(4,650,150,
+                "-->","right5");
+            //5
+            createarrowleft(5,0,150,
+                "<--", "left4");
+            createarrowright(5,650,150,
+                "-->","right6");
+            //6
+            createarrowleft(6,0,150,
+                "<--", "left5");
+            createarrowright(6,650,150,
+                "-->","right7");
+            //7
+            createarrowleft(7,0,150,
+                "<--", "left6");
+            createarrowright(7,650,150,
+                "-->","right8");
+            //8
+            createarrowleft(8,0,150,
+                "<--", "left7");
+            createarrowright(8,650,150,
+                "-->","right1");
 
-        createarrowleft(1,0,150,
-                "<--", "left");
-        createarrowright(1,650,150,
-                "-->","right");
+
     }
 
     public void createmainfield() {
@@ -70,6 +125,15 @@ public class UI {
         window.setSize(800, 700);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
+        window.setTitle("Point & Click: Mystery House.");
+        //want this to trigger how to Game app window!
+        JButton tophelpButton = new JButton("How to Play");
+        tophelpButton.setBounds(650, 15, 110, 30);
+        window.add(tophelpButton);
+        tophelpButton.setBackground(Color.DARK_GRAY);
+        JButton bottomtrigger = new JButton("ACCUSE");
+        bottomtrigger.setBounds(650, 600, 110, 50);
+        window.add(bottomtrigger);
         window.setLayout(null);
         window.setResizable(false);
 
@@ -77,7 +141,7 @@ public class UI {
         messageText = new JTextArea("Find clues to solve the Mystery.");
         //box
         messageText.setBounds(100, 400, 600, 150);
-        messageText.setBackground(Color.BLUE);
+        messageText.setBackground(Color.BLACK);
         //text
         messageText.setForeground(Color.WHITE);
         messageText.setEditable(false);
@@ -193,14 +257,33 @@ public class UI {
 
     }
 
-    public void createarrowleft(int bgNUM, int x, int y, String arrowFileNm, String Constant) {
-        JButton arrowButton = new JButton(arrowFileNm);
+    public void createarrowleft(int bgNUM, int x, int y, String arrowlble, String direction) {
+        JButton arrowButton = new JButton(arrowlble);
         arrowButton.setBounds(x, y, 50, 50);
-        arrowButton.setBackground(Color.GRAY);
+        arrowButton.setBackground(Color.BLACK);
+        arrowButton.setOpaque(true);
+        arrowButton.setFocusPainted(false);
+        arrowButton.addActionListener(gm.ahandler);
+        arrowButton.setActionCommand(direction);
+
+        if (bgPanel[bgNUM].getLayout() != null) {
+            bgPanel[bgNUM].setLayout(null);
+        }
+
+        bgPanel[bgNUM].add(arrowButton);
+        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // Bring it to the front
+        bgPanel[bgNUM].revalidate();
+        bgPanel[bgNUM].repaint();
+    }
+
+    public void createarrowright(int bgNUM, int x, int y, String arrowlble, String direction) {
+        JButton arrowButton = new JButton(arrowlble);
+        arrowButton.setBounds(x, y, 50, 50);
+        arrowButton.setBackground(Color.BLACK);
         arrowButton.setOpaque(true);  // Ensures the background color shows up
         arrowButton.setFocusPainted(false);
         arrowButton.addActionListener(gm.ahandler);
-        arrowButton.setActionCommand(Constant);
+        arrowButton.setActionCommand(direction);
 
         // Ensure bgPanel has a null layout for absolute positioning
         if (bgPanel[bgNUM].getLayout() != null) {
@@ -212,24 +295,25 @@ public class UI {
         bgPanel[bgNUM].revalidate();
         bgPanel[bgNUM].repaint();
     }
+    public void inventory() {
+        JPanel inventoryPanel = new JPanel();
+        inventoryPanel.setBounds(100, 650, 300, 50); // Adjust width if more items are added
+        inventoryPanel.setBackground(Color.PINK);
+        inventoryPanel.setLayout(new GridLayout(1, 6));
 
-    public void createarrowright(int bgNUM, int x, int y, String arrowFileNm, String Constant) {
-        JButton arrowButton = new JButton(arrowFileNm);
-        arrowButton.setBounds(x, y, 50, 50);
-        arrowButton.setBackground(Color.BLUE);
-        arrowButton.setOpaque(true);  // Ensures the background color shows up
-        arrowButton.setFocusPainted(false);
-        arrowButton.addActionListener(gm.ahandler);
-        arrowButton.setActionCommand(Constant);
+        window.add(inventoryPanel);
 
-        // Ensure bgPanel has a null layout for absolute positioning
-        if (bgPanel[bgNUM].getLayout() != null) {
-            bgPanel[bgNUM].setLayout(null);
+        try {
+            ImageIcon plantIcon = new ImageIcon(getClass().getClassLoader().getResource("resources/carnivorous-plant.png"));
+            JLabel plantLabel = new JLabel(plantIcon);
+            inventoryPanel.add(plantLabel);
+        } catch (NullPointerException e) {
+            System.out.println("Error loading plant icon.");
         }
 
-        bgPanel[bgNUM].add(arrowButton);
-        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // Bring it to the front
-        bgPanel[bgNUM].revalidate();
-        bgPanel[bgNUM].repaint();
+        window.revalidate();
+        window.repaint();
     }
+
 }
+
