@@ -5,9 +5,9 @@ import javax.swing.*;
 
 //tried doing extends jframe dont do that.
 public class UI {
+    private GameManager gm;
+    public JFrame window;
     public Window GameApp;
-    GameManager gm;
-    JFrame window;
     public JTextArea messageText;
     public JPanel[] bgPanel = new JPanel[10];
     public JLabel[] bgLable = new JLabel[10];
@@ -125,17 +125,24 @@ public class UI {
         window.setSize(800, 700);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
-        window.setTitle("Point & Click: Mystery House.");
-        //want this to trigger how to Game app window!
+        window.setTitle("Point & Click: Mystery House");
+
+        // "How to Play" button
         JButton tophelpButton = new JButton("How to Play");
         tophelpButton.setBounds(650, 15, 110, 30);
-        window.add(tophelpButton);
         tophelpButton.setBackground(Color.DARK_GRAY);
+        //added in extra window?
+        tophelpButton.addActionListener(e -> gm.showInstructions());
+        window.add(tophelpButton);
+
+        // Create "ACCUSE" button
         JButton bottomtrigger = new JButton("ACCUSE");
         bottomtrigger.setBounds(650, 600, 110, 50);
         window.add(bottomtrigger);
+
         window.setLayout(null);
         window.setResizable(false);
+        window.setVisible(true);
 
         //sample text
         messageText = new JTextArea("Find clues to solve the Mystery.");
