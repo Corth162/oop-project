@@ -6,6 +6,7 @@ package Main;
 import Event.Event01;
 import javax.swing.*;
 import java.awt.*;
+
 import java.net.URL;  // Add this line
 
 
@@ -18,8 +19,10 @@ public class GameManager {
     public RoomChanger rchange = new RoomChanger(this);
     public Event01 ev1 = new Event01(this);
     Music music = new Music();
+    SE se = new SE();
 
     public URL ethMusic = getClass().getClassLoader().getResource("resources/EthernightClub.wav");  // Path to your song file
+    public URL clickSound = getClass().getClassLoader().getResource("resources/click.wav");  // Path to your click sound file
     public URL currentMusic;
 
     public static void main(String[] args) {
@@ -39,6 +42,15 @@ public class GameManager {
             playMusic(currentMusic);   // Play the selected music
         } else {
             System.out.println("Music file not found.");
+        }
+    }
+
+    public void playClickSound() {
+        if (clickSound != null) {
+            se.setFile(clickSound);  // Set the file for the click sound
+            se.play(clickSound);     // Play the click sound from the beginning
+        } else {
+            System.out.println("Click sound file not found.");
         }
     }
 
@@ -79,7 +91,7 @@ public class GameManager {
 
 
 //other stuff i wanna add...
-//1) music! --> not needed but i feel like it would make it seem more finished.
+
 //2) more objects to make the mystery less obvious
 //3) add an inventory for useful clues
 //4) make accuse button!!!! --> NEEDED TO BE DONE
