@@ -6,6 +6,8 @@ package Main;
 import Event.Event01;
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;  // Add this line
+
 
 public class GameManager {
 
@@ -13,9 +15,12 @@ public class GameManager {
     Actionhandler ahandler = new Actionhandler(this);
     //Ui must be public so Event can access it.
     public UI ui;
-    public Roomchanger rchange = new Roomchanger(this);
+    public RoomChanger rchange = new RoomChanger(this);
     public Event01 ev1 = new Event01(this);
+    Music music = new Music();
 
+    public URL ethMusic = getClass().getClassLoader().getResource("resources/EthernightClub.wav");  // Path to your song file
+    public URL currentMusic;
 
     public static void main(String[] args) {
         // Start the game manager
@@ -28,7 +33,32 @@ public class GameManager {
         ui = new UI(this);
         rchange.callroom1();
         showInstructions();
+
+        if (ethMusic != null) {
+            currentMusic = ethMusic;  // Assign ethMusic to currentMusic
+            playMusic(currentMusic);   // Play the selected music
+        } else {
+            System.out.println("Music file not found.");
+        }
     }
+
+    public void playMusic(URL url) {
+        if (url != null) {
+            music.setFile(url);  // Set the file for the music
+            music.play(url);     // Play the music from the beginning
+            music.loop(url);     // Loop the music
+        } else {
+            System.out.println("Music file not found.");
+        }
+    }
+
+    // Stop the background music
+    public void stopMusic() {
+        if (music != null) {
+            music.stop(currentMusic);
+        }
+    }
+
     public void showInstructions() {
         // Create a non-modal dialog
         JDialog instructionsDialog = new JDialog((Dialog) ui.GameApp, "How to Play", false);
