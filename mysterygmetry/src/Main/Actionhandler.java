@@ -12,6 +12,8 @@ public class Actionhandler implements ActionListener {
         //objs
         String yourchoice = e.getActionCommand();
         System.out.println("Action Command: " + yourchoice);
+        gm.playClickSound();  // This will play the click sound
+
         switch(yourchoice) {
 
             //objs
