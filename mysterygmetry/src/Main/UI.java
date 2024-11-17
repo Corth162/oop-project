@@ -12,7 +12,7 @@ public class UI {
     public JPanel[] bgPanel = new JPanel[10];
     public JLabel[] bgLable = new JLabel[10];
     private JFrame frame;
-    
+
 
     public JFrame getFrame() {
         return frame;
@@ -24,38 +24,38 @@ public class UI {
     public UI(GameManager gm) {
         this.gm = gm;
         createmainfield(); // constructor, makes the window, and also holds the sample text which ima change later duh
-        
-    //values!!!!
+
+        //values!!!!
         //rooms
-            //1)living room
-            createbackground(1, 50, 50, 700, 325,
+        //1)living room
+        createbackground(1, 50, 50, 700, 325,
                 "/resources/livingroom.jpg");
-            //2)sunroom
-            createbackground(2, 50, 50, 700, 325,
+        //2)sunroom
+        createbackground(2, 50, 50, 700, 325,
                 "/resources/sun_room.jpg");
-            //3)bathroom
-            createbackground(3, 50, 50, 700, 325,
+        //3)bathroom
+        createbackground(3, 50, 50, 700, 325,
                 "/resources/bathroom.jpg");
-            //4)dining room
-            createbackground(4, 50, 50, 700, 325,
+        //4)dining room
+        createbackground(4, 50, 50, 700, 325,
                 "/resources/diningroom.jpg");
-            //5)study
-            createbackground(5, 50, 50, 700, 325,
+        //5)study
+        createbackground(5, 50, 50, 700, 325,
                 "/resources/study.jpg");
-            //6)entrance
-            createbackground(6, 50, 50, 700, 325,
+        //6)entrance
+        createbackground(6, 50, 50, 700, 325,
                 "/resources/entrance.jpg");
-            //7)bedroom
-            createbackground(7, 50, 50, 700, 325,
+        //7)bedroom
+        createbackground(7, 50, 50, 700, 325,
                 "/resources/bedroom.jpg");
-            //8)attic
-            createbackground(8, 50, 50, 700, 325,
+        //8)attic
+        createbackground(8, 50, 50, 700, 325,
                 "/resources/attic.jpg");
-            //9)hidden room
-            createbackground(9, 50, 50, 700, 325,
+        //9)hidden room
+        createbackground(9, 50, 50, 700, 325,
                 "/resources/sun_room.jpg");
         //objects
-            //cup
+        //cup
         createobject(1,200, 150, 100, 100,
                 "/resources/cup.png",
                 "What's This?", "Look Closer", "Pick Up",
@@ -96,45 +96,45 @@ public class UI {
                 "What's This?", "Look Closer", "Pick Up",
                 "this_bottle", "closer_bottle", "pick_up_bottle");
         //arrows
-            //1
-            createarrowleft(1,0,150,
-                    "<--", "right8");
-            createarrowright(1,650,150,
+        //1
+        createarrowleft(1,0,150,
+                "<--", "right8");
+        createarrowright(1,650,150,
                 "-->","right2");
-            //2
-            createarrowleft(2,0,150,
+        //2
+        createarrowleft(2,0,150,
                 "<--", "left1");
-            createarrowright(2,650,150,
+        createarrowright(2,650,150,
                 "-->","right3");
-            //3
-            createarrowleft(3,0,150,
+        //3
+        createarrowleft(3,0,150,
                 "<--", "left2");
-            createarrowright(3,650,150,
+        createarrowright(3,650,150,
                 "-->","right4");
-            //4
-            createarrowleft(4,0,150,
+        //4
+        createarrowleft(4,0,150,
                 "<--", "left3");
-            createarrowright(4,650,150,
+        createarrowright(4,650,150,
                 "-->","right5");
-            //5
-            createarrowleft(5,0,150,
+        //5
+        createarrowleft(5,0,150,
                 "<--", "left4");
-            createarrowright(5,650,150,
+        createarrowright(5,650,150,
                 "-->","right6");
-            //6
-            createarrowleft(6,0,150,
+        //6
+        createarrowleft(6,0,150,
                 "<--", "left5");
-            createarrowright(6,650,150,
+        createarrowright(6,650,150,
                 "-->","right7");
-            //7
-            createarrowleft(7,0,150,
+        //7
+        createarrowleft(7,0,150,
                 "<--", "left6");
-            createarrowright(7,650,150,
+        createarrowright(7,650,150,
                 "-->","right8");
-            //8
-            createarrowleft(8,0,150,
+        //8
+        createarrowleft(8,0,150,
                 "<--", "left7");
-            createarrowright(8,650,150,
+        createarrowright(8,650,150,
                 "-->","right1");
 
 
@@ -158,6 +158,10 @@ public class UI {
         // Create "ACCUSE" button
         JButton bottomtrigger = new JButton("ACCUSE");
         bottomtrigger.setBounds(650, 600, 110, 50);
+
+        //new
+        bottomtrigger.addActionListener(e -> showAccuseOptions()); // Attach action listener
+
         window.add(bottomtrigger);
 
         window.setLayout(null);
@@ -173,8 +177,9 @@ public class UI {
         messageText.setForeground(Color.WHITE);
         messageText.setEditable(false);
         messageText.setWrapStyleWord(true);
-        messageText.setFont(new Font("American Typewriter", Font.PLAIN, 26)); //new font?
+        messageText.setFont(new Font("American Typewriter", Font.PLAIN, 22)); //new font?
         window.add(messageText); // actually adding this text to the window
+
         window.setVisible(true);
     }
 
@@ -342,5 +347,53 @@ public class UI {
         window.repaint();
     }
 
-}
 
+    //ACCUSE OPTIONS
+    private void showAccuseOptions() {
+        String[] options = {"Kyle", "Garth", "Daisy Mae", "Great Aunt Myrtle"};
+        int choice = JOptionPane.showOptionDialog(
+                window,
+                "Who do you accuse?",
+                "Make Your Accusation",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]
+        );
+        if (choice == 2) { // Index of "Daisy Mae"
+            showWinMessage();
+        } else if (choice >= 0) { // If user makes a selection other than Daisy Mae
+            showLoseMessage();
+        }
+    }
+    private void showWinMessage() {
+        JOptionPane.showMessageDialog(
+                window,
+                "Congratulations! You solved the mystery!",
+                "You Win!",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+    // Display a lose message and disable further interaction
+    private void showLoseMessage() {
+        JOptionPane.showMessageDialog(
+                window,
+                "Oh no! That was the wrong choice. Game over!",
+                "Game Over",
+                JOptionPane.ERROR_MESSAGE
+        );
+        disableGame();
+    }
+    // Disable the game by removing all components and locking the UI
+    private void disableGame() {
+        window.getContentPane().removeAll();
+        JLabel gameOverLabel = new JLabel("GAME OVER", SwingConstants.CENTER);
+        gameOverLabel.setForeground(Color.RED);
+        gameOverLabel.setFont(new Font("American Typewriter", Font.BOLD, 36));
+        window.getContentPane().add(gameOverLabel);
+        gameOverLabel.setBounds(0, 0, 800, 700);
+        window.repaint();
+    }
+    //END OF ACCUSE
+}
