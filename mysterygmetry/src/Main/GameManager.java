@@ -16,7 +16,7 @@ public class GameManager {
     Actionhandler ahandler = new Actionhandler(this);
     //Ui must be public so Event can access it.
     public UI ui;
-    public RoomChanger rchange = new RoomChanger(this);
+    public Roomchanger rchange = new Roomchanger(this);
     public Event01 ev1 = new Event01(this);
     Music music = new Music();
     SE se = new SE();
@@ -74,26 +74,30 @@ public class GameManager {
     public void showInstructions() {
         // Create a non-modal dialog
         JDialog instructionsDialog = new JDialog((Dialog) ui.GameApp, "How to Play", false);
-        instructionsDialog.setSize(600, 500);
+        instructionsDialog.setSize(700, 600);
         instructionsDialog.setLocationRelativeTo(ui.GameApp);
 
         JTextArea instructionsText = new JTextArea("Welcome to the Game!\n\n"
-                + "How to Play:\n"
+                + "How to Play:\n\n"
                 + "- You wake up from a wild party from the night before only to realize your priceless ring that your\n"
                 + "late grandmother left behind for you is missing. You cannot remember anything that happened last night.\n"
                 + "Did you lose the ring or was it stolen from you and why?\n"
-                + "You need to find the ring and if someone took it before everyone leaves.\n"
-                + "- The people that came to the party are:\n"
-                + "1. Kyle, he's your late grandmother's neighbor and helped her with technical problems which made them\n"
-                + "have an oddly close relationship. Could he have been jealous that you inherited the ring and manor?\n"
-                + "2. Garth, your older brother that has always gotten everything he wanted, except the inheritance.\n"
-                + "Could he have possibly tried to steal the ring for revenge?\n"
-                + "3. Daisy Mae, she's been your best friend at college and has always stood by your side so you've always\n"
-                + "admired her. You notice she's been distant since last night, but she couldn't have possibly done it, right?\n"
-                + "4. Great-Aunt Myrtle, she's your late grandmother's older sister. She's had a raging alcoholic addiction\n"
-                + "that led to the crazy party the night before. Did she do that to take the ring from you since her sister didn't?\n"
-                + "-You must search the rooms throughout the manor for objects that contain clues to solve this mystery.\n"
-                + "-If you do not find the right culprit, you may be doomed to repeat it.\n");
+                + "You need to find the ring and if someone took it before everyone leaves.\n\n\n"
+                + "SUSPECTS:\n\n"
+                + "1. Kyle, he's your late grandmother's neighbor and helped her with technical problems \n"
+                + "which made them have an oddly close relationship. \n"
+                + "Could he have been jealous that you inherited the ring and manor?\n\n"
+                + "2. Garth, your older brother that has always gotten everything he wanted, \n"
+                + "except the inheritance.\n"
+                + "Could he have possibly tried to steal the ring for revenge?\n\n"
+                + "3. Daisy Mae, she's been your best friend at college and has always stood by your side. \n"
+                + "You notice she's been distant since last night, but she couldn't have possibly done it, right?\n\n"
+                + "4. Great-Aunt Myrtle, she's your late grandmother's older sister.\n "
+                + "She's a raging alcoholic, she is the one that started the crazy party the night before.\n"
+                +" Did she do that to take the ring from you since her sister didn't?\n\n\n"
+                + "MISSION: \n\n"
+                + "You must search the rooms throughout the manor for objects that contain clues to solve this mystery.\n"
+                + "If you do not find the right culprit, you may be doomed to start all over!\n");
         instructionsText.setEditable(false);
         instructionsDialog.add(new JScrollPane(instructionsText));
 
@@ -105,10 +109,9 @@ public class GameManager {
 
 //other stuff i wanna add...
 
-//2) more objects to make the mystery less obvious
+
 //3) add an inventory for useful clues
 //4) make accuse button!!!! --> NEEDED TO BE DONE
 //      -   make it so inventory must be full to accuse
 //      -   make it so when accuse wrong, comes up with a popup saying you lost,
 //          game resets upon failure. (or window closes itself)
-//5) flesh out how to play button w/ character descriptions
