@@ -85,7 +85,8 @@ public class Event01 {
                 + "that there's a page with a picture like the plant you saw.\n"
                 + "The description says it's a plant to put people to sleep\n"
                 + "and causes a laspe in memory. This was in your cup.\n"
-                + "But who did this to you? And why? You need to investigate.");
+                + "But who did this to you? And why? \n"
+                + "You need to investigate.");
     }
 
     public void this_note() {
@@ -93,11 +94,17 @@ public class Event01 {
     }
 
     public void closer_note() {
-        gm.ui.messageText.setText("This is a copy of a background research done on Daisy Mae!\nIt appears her family was in tons of debt.");
+        gm.ui.messageText.setText("This is a copy of a background research done \n"
+                + "on Daisy Mae! It appears her family was \n"
+                + "in tons of debt.");
     }
 
     public void pick_up_note() {
-        gm.ui.messageText.setText("You picked up the note! You see that your grandmother\ndid a background check on her. It seems like she's been in\ndebt for a very long time. Could she have been\nafter your ring for the money?");
+        gm.ui.messageText.setText("You picked up the note! You see that your \n"
+                +"grandmother did a background check on her. \n"
+                + "It seems like she's been in debt for a very long time. \n"
+                + "Could she have been after your ring \n"
+                + "for the money?");
     }
 
     public void this_shirt() {
