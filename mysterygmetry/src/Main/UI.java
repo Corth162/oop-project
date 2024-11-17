@@ -55,26 +55,46 @@ public class UI {
             createbackground(9, 50, 50, 700, 325,
                 "/resources/sun_room.jpg");
         //objects
-            //lipstick
-            createobject(1,400, 150, 100, 100,
-                "/resources/lipstick.png",
+            //cup
+        createobject(1,200, 150, 100, 100,
+                "/resources/cup.png",
                 "What's This?", "Look Closer", "Pick Up",
-                "this_lipstick", "closer_lipstick", "pick_up_lipstick");
-            //plant
-            createobject(2,300, 160, 100, 100,
+                "this_cup", "closer_cup", "pick_up_cup");
+        //plant
+        createobject(2,300, 160, 100, 100,
                 "/resources/carnivorous-plant.png",
                 "What's This?", "Look Closer", "Pick Up",
                 "this_plant", "closer_plant", "pick_up_plant");
-            //book
-            createobject(5,300, 160, 100, 100,
+        //soap
+        createobject(3,500, 160, 100, 100,
+                "/resources/soap.png",
+                "What's This?", "Look Closer", "Pick Up",
+                "this_soap", "closer_soap", "pick_up_soap");
+        //portrait
+        createobject(4,300, 160, 100, 100,
+                "/resources/portrait.png",
+                "What's This?", "Look Closer", "Pick Up",
+                "this_portrait", "closer_portrait", "pick_up_portrait");
+        //book
+        createobject(5,300, 160, 100, 100,
                 "/resources/white-book.png",
                 "What's This?", "Look Closer", "Pick Up",
                 "this_book", "closer_book", "pick_up_book");
-            //envelope
-            createobject(6,450, 160, 100, 100,
+        //envelope
+        createobject(6,450, 160, 100, 100,
                 "/resources/envelope.png",
                 "What's This?", "Look Closer", "Pick Up",
                 "this_note", "closer_note", "pick_up_note");
+        //shirt
+        createobject(7,400, 150, 100, 100,
+                "/resources/shirt.png",
+                "What's This?", "Look Closer", "Pick Up",
+                "this_shirt", "closer_shirt", "pick_up_shirt");
+        //bottle
+        createobject(8,300, 150, 100, 100,
+                "/resources/bottle.png",
+                "What's This?", "Look Closer", "Pick Up",
+                "this_bottle", "closer_bottle", "pick_up_bottle");
         //arrows
             //1
             createarrowleft(1,0,150,
