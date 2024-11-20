@@ -352,48 +352,52 @@ public class UI {
     private void showAccuseOptions() {
         String[] options = {"Kyle", "Garth", "Daisy Mae", "Great Aunt Myrtle"};
         int choice = JOptionPane.showOptionDialog(
-                window,
-                "Who do you accuse?",
-                "Make Your Accusation",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                options,
-                options[0]
+                window, "Who do you accuse?", "Make Your Accusation", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, options, options[0]
         );
-        if (choice == 2) { // Index of "Daisy Mae"
+        // if Daisy then win, else lose
+        if (choice == 2) {
             showWinMessage();
-        } else if (choice >= 0) { // If user makes a selection other than Daisy Mae
+        } else if (choice >= 0) {
             showLoseMessage();
         }
     }
     private void showWinMessage() {
         JOptionPane.showMessageDialog(
-                window,
-                "Congratulations! You solved the mystery!",
-                "You Win!",
-                JOptionPane.INFORMATION_MESSAGE
-        );
+                window, "Congratulations! You solved the mystery!\n"
+                        + "Daisy is so sad she breaks down in tears and gives you back your missing ring!\n"
+                        + "she goes to prison forever :(",
+                "You Win!", JOptionPane.INFORMATION_MESSAGE
+                );
+        finGame();
     }
-    // Display a lose message and disable further interaction
     private void showLoseMessage() {
-        JOptionPane.showMessageDialog(
-                window,
-                "Oh no! That was the wrong choice. Game over!",
-                "Game Over",
-                JOptionPane.ERROR_MESSAGE
-        );
+        JOptionPane.showMessageDialog(window,
+                "Oh no! That was the wrong choice. \n"
+                        + "They got so mad at you for falsely accusing them & they kill you :(\n"
+                        + "Game over!",
+                "Game Over", JOptionPane.ERROR_MESSAGE
+                );
         disableGame();
     }
-    // Disable the game by removing all components and locking the UI
     private void disableGame() {
         window.getContentPane().removeAll();
         JLabel gameOverLabel = new JLabel("GAME OVER", SwingConstants.CENTER);
         gameOverLabel.setForeground(Color.RED);
-        gameOverLabel.setFont(new Font("American Typewriter", Font.BOLD, 36));
+        gameOverLabel.setFont(new Font("American Typewriter", Font.BOLD, 66));
         window.getContentPane().add(gameOverLabel);
         gameOverLabel.setBounds(0, 0, 800, 700);
         window.repaint();
     }
+    private void finGame() {
+        window.getContentPane().removeAll();
+        JLabel winLabel = new JLabel("YOU WIN!", SwingConstants.CENTER);
+        winLabel.setForeground(Color.GREEN);
+        winLabel.setFont(new Font("American Typewriter", Font.BOLD, 66));
+        window.getContentPane().add(winLabel);
+        winLabel.setBounds(0, 0, 800, 700);
+        window.repaint();
+    }
     //END OF ACCUSE
+}
 }
