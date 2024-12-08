@@ -20,50 +20,47 @@ public class GameManager {
     public Event01 ev1 = new Event01(this);
     Music music = new Music();
     SE se = new SE();
-
+//computers have different file names (for some reason), maybe space maybe not to run it right
     public URL ethMusic = getClass().getClassLoader().getResource("resources/EthernightClub.wav");  
     public URL clickSound = getClass().getClassLoader().getResource("resources/click.wav");  
     public URL currentMusic;
 
     public static void main(String[] args) {
-        // Start the game manager
         new GameManager();
     }
 
     public GameManager() {
-        //must have UI outside of main which is what i was trying to do and of course no window
-        //showed up.
+        //must have UI outside of main 
         ui = new UI(this);
         rchange.callroom1();
         showInstructions();
 
         if (ethMusic != null) {
-            currentMusic = ethMusic;  // Assign ethMusic to currentMusic
-            playMusic(currentMusic);   // Play the selected music
+            currentMusic = ethMusic;  
+            playMusic(currentMusic);   
         } else {
             System.out.println("Music file not found.");
         }
     }
 
+    //Sounds + Music
     public void playClickSound() {
         if (clickSound != null) {
-            se.setFile(clickSound);  // Set the file for the click sound
-            se.play(clickSound);     // Play the click sound from the beginning
+            se.setFile(clickSound);  
+            se.play(clickSound);     
         } else {
             System.out.println("Click sound file not found.");
         }
     }
-
     public void playMusic(URL url) {
         if (url != null) {
-            music.setFile(url);  // Set the file for the music
-            music.play(url);     // Play the music from the beginning
-            music.loop(url);     // Loop the music
+            music.setFile(url);  
+            music.play(url);     
+            music.loop(url);     
         } else {
             System.out.println("Music file not found.");
         }
     }
-
     // Stop the background music
     public void stopMusic() {
         if (music != null) {
@@ -100,18 +97,12 @@ public class GameManager {
                 + "If you do not find the right culprit, you may be doomed to start all over!\n");
         instructionsText.setEditable(false);
         instructionsDialog.add(new JScrollPane(instructionsText));
-
-        // Display the dialog
         instructionsDialog.setVisible(true);
     }
 }
 
 
 //other stuff i wanna add...
-
-
 //3) add an inventory for useful clues
 //4) make accuse button!!!! --> NEEDED TO BE DONE
-//      -   make it so inventory must be full to accuse
-//      -   make it so when accuse wrong, comes up with a popup saying you lost,
-//          game resets upon failure. (or window closes itself)
+//      -   make it so inventory must be full to accuse, makes game better and harder to just continously guess without actually playing.
