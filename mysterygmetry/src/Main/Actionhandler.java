@@ -9,15 +9,16 @@ public class Actionhandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //objs
+        //this is for setting up the actions for the objects
         String yourchoice = e.getActionCommand();
         System.out.println("Action Command: " + yourchoice);
-        gm.playClickSound();  // This will play the click sound
+        gm.playClickSound();  // This will play the click sound that we added in
 
 
         switch(yourchoice) {
 
-            //objs
+            //these are all the cases of each action that's done on an object such as clicking on it, examining it closer
+            //or picking up the item
             case "this_cup": gm.ev1.this_cup(); break;
             case "closer_cup": gm.ev1.closer_cup(); break;
             case "pick_up_cup": gm.ev1.pick_up_cup(); break;
@@ -50,29 +51,29 @@ public class Actionhandler implements ActionListener {
             case "closer_bottle": gm.ev1.closer_bottle(); break;
             case "pick_up_bottle": gm.ev1.pick_up_bottle(); break;
 
-            //rooms
-            //1
+            //the rooms are set up from numbers 1-8 and these actions are for going between the rooms
+            //swithcing in room 1
             case "left8": gm.rchange.callroom8();break;
             case "right2": gm.rchange.callroom2();break;
-            //2
+            //switiching in room 2
             case "left1": gm.rchange.callroom1();break;
             case  "right3": gm.rchange.callroom3();break;
-            //3
+            //switching in room 3
             case "left2":gm.rchange.callroom2();break;
             case "right4": gm.rchange.callroom4();break;
-            //4
+            //switching for room 4
             case "left3":gm.rchange.callroom3();break;
             case "right5": gm.rchange.callroom5();break;
-            //5
+            //switching in room 5
             case "left4":gm.rchange.callroom4();break;
             case "right6": gm.rchange.callroom6();break;
-            //6
+            //switching in room 6
             case "left5":gm.rchange.callroom5();break;
             case "right7": gm.rchange.callroom7();break;
-            //7
+            //switching for room 7
             case "left6":gm.rchange.callroom6();break;
             case "right8": gm.rchange.callroom8();break;
-            //8
+            //swithcing for room 8
             case "left7":gm.rchange.callroom7();break;
             case "right1":gm.rchange.callroom1();break;
 
