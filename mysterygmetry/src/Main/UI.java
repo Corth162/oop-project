@@ -23,9 +23,11 @@ public class UI {
 
     public UI(GameManager gm) {
         this.gm = gm;
-        createmainfield(); // constructor, makes the window, and also holds the sample text which ima change later duh
+        createmainfield(); // constructor, makes the window, and also holds the sample text which really only shows up
+                            //when screen loads in
 
         //values!!!!
+        
         //rooms
         //1)living room
         createbackground(1, 50, 50, 700, 325,
@@ -54,6 +56,7 @@ public class UI {
         //9)hidden room
         createbackground(9, 50, 50, 700, 325,
                 "/resources/sun_room.jpg");
+        
         //objects
         //cup
         createobject(1,200, 150, 100, 100,
@@ -147,7 +150,7 @@ public class UI {
         window.getContentPane().setBackground(Color.BLACK);
         window.setTitle("Point & Click: Mystery House");
 
-        // "How to Play" button
+        // button
         JButton tophelpButton = new JButton("How to Play");
         tophelpButton.setBounds(650, 15, 110, 30);
         tophelpButton.setBackground(Color.DARK_GRAY);
@@ -155,7 +158,7 @@ public class UI {
         tophelpButton.addActionListener(e -> gm.showInstructions());
         window.add(tophelpButton);
 
-        // Create "ACCUSE" button
+        // "ACCUSE" button
         JButton bottomtrigger = new JButton("ACCUSE");
         bottomtrigger.setBounds(650, 600, 110, 50);
 
@@ -183,10 +186,8 @@ public class UI {
         window.setVisible(true);
     }
 
-    //im trying with the img ill fix l8r
     public void createbackground(int panelIndex, int x, int y, int width, int height, String imagePath) {
-        //practice with the gray box first before image, might delete this later if i can get the img to display
-        //on its own, and not over this bgpanel
+        //box to display background img onto
         bgPanel[panelIndex] = new JPanel();
         bgPanel[panelIndex].setBounds(x, y, width, height);
         bgPanel[panelIndex].setBackground(Color.BLACK);
@@ -196,8 +197,8 @@ public class UI {
         bgLable[panelIndex] = new JLabel();
         bgLable[panelIndex].setBounds(0, 0, width, height);
 
-        // Scaling the img because the img wasnt the exact size i need, and im just grabbing kinda random ones
-        //to test, if i make custom ones should be able to ignore this too.
+        // Scaling the img because the img wasnt the exact size i need, all images were different sizes and this
+        //seemed like the easiest way to maintain
         ImageIcon backgroundIcon = new ImageIcon(getClass().getResource(imagePath));
         if (backgroundIcon.getImageLoadStatus() != MediaTracker.ERRORED) {
             // Scaling the image
@@ -220,7 +221,7 @@ public class UI {
 
         //MENU
         JPopupMenu popMenu = new JPopupMenu();
-        JMenuItem[] menuItem = new JMenuItem[4]; //can change to add more items,
+        JMenuItem[] menuItem = new JMenuItem[4]; //can change to add more items but seems super unnecessary
         //Menu items
 
         menuItem[0] = new JMenuItem(menu0);
@@ -251,6 +252,7 @@ public class UI {
             public void mousePressed(MouseEvent e) {
                 if(SwingUtilities.isRightMouseButton(e)){
                     popMenu.show(objectlable,e.getX(), e.getY());
+                    //rightclick to show menu
                 }
             }
             @Override
@@ -264,9 +266,7 @@ public class UI {
             }
         });
         // Load and scale
-        //scaling can be a problem for the image/obj to not show up. might just have all the objects be obvious
-        //and the same size depending. i like the game-icons.net thing and we can cite it. I hopefully will later
-        //change out the background images.
+        //scaling can be a problem for the image/obj to not show up.
         ImageIcon objectIcon = new ImageIcon(getClass().getResource(objFileNme));
         if (objectIcon.getImageLoadStatus() != MediaTracker.ERRORED) {
             Image scaledImage = objectIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
@@ -282,13 +282,12 @@ public class UI {
         bgPanel[bgNum].setComponentZOrder(objectlable, 0);  // 0 places it on top
         bgPanel[bgNum].revalidate();
         bgPanel[bgNum].repaint();
-        //SOOOOOO: I struggled so hard adding in an object because basically java swing is a dick.
         //Java sometimes won't update the order of things unless you explicitly change it.
-        //setComponentZOrder(objectlabel, 0) directly states that the lipstick/objectlable is infront of bgpanel
+        //setComponentZOrder(objectlabel, 0) explicitly states that the lipstick/objectlable is infront of bgpanel
         //regardless of the order they're added in.
-
     }
 
+    //arrows
     public void createarrowleft(int bgNUM, int x, int y, String arrowlble, String direction) {
         JButton arrowButton = new JButton(arrowlble);
         arrowButton.setBounds(x, y, 50, 50);
@@ -303,7 +302,7 @@ public class UI {
         }
 
         bgPanel[bgNUM].add(arrowButton);
-        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // Bring it to the front
+        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // make sure its on top
         bgPanel[bgNUM].revalidate();
         bgPanel[bgNUM].repaint();
     }
@@ -317,16 +316,16 @@ public class UI {
         arrowButton.addActionListener(gm.ahandler);
         arrowButton.setActionCommand(direction);
 
-        // Ensure bgPanel has a null layout for absolute positioning
         if (bgPanel[bgNUM].getLayout() != null) {
             bgPanel[bgNUM].setLayout(null);
         }
 
         bgPanel[bgNUM].add(arrowButton);
-        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // Bring it to the front
+        bgPanel[bgNUM].setComponentZOrder(arrowButton, 0);  // make sure its on top
         bgPanel[bgNUM].revalidate();
         bgPanel[bgNUM].repaint();
     }
+    //never finished inventory
     public void inventory() {
         JPanel inventoryPanel = new JPanel();
         inventoryPanel.setBounds(100, 650, 300, 50); // Adjust width if more items are added
@@ -367,8 +366,7 @@ public class UI {
                 window, "Congratulations! You solved the mystery!\n"
                         + "Daisy is so sad she breaks down in tears and gives you back your missing ring!\n"
                         + "she goes to prison forever :(",
-                "You Win!", JOptionPane.INFORMATION_MESSAGE
-                );
+                "You Win!", JOptionPane.INFORMATION_MESSAGE );
         finGame();
     }
     private void showLoseMessage() {
@@ -376,8 +374,7 @@ public class UI {
                 "Oh no! That was the wrong choice. \n"
                         + "They got so mad at you for falsely accusing them & they kill you :(\n"
                         + "Game over!",
-                "Game Over", JOptionPane.ERROR_MESSAGE
-                );
+                "Game Over", JOptionPane.ERROR_MESSAGE );
         disableGame();
     }
     private void disableGame() {
