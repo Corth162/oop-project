@@ -1,4 +1,4 @@
-
+// this is the main class, everything else comes through here
 //  event01 holds the dialogue
 
 package Main;
