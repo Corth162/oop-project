@@ -1,3 +1,6 @@
+//This class is for setting up all the dialogue and descriptions that need to appear whenenever the player
+//selects on an item or a room.
+
 package Event;
 
 import Main.GameManager;
