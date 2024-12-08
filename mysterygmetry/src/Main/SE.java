@@ -1,3 +1,6 @@
+//This class is for setting up the sound effect, clicking sound, so that it can be called in the main and played
+//It's set up very similar to the music class, we switched a few functions but the set up is similar because it was easier for us
+
 package Main;
 
 import java.net.URL;
