@@ -1,3 +1,5 @@
+//This class is for setting up the music so it can be called in the main to play
+
 package Main;
 
 import java.net.URL;
@@ -7,42 +9,42 @@ import javax.sound.sampled.Clip;
 
 public class Music {
 
-    private Clip clip;  // Clip to handle the music playback
+    private Clip clip;  // This is a clip to handle the music playback
 
-    // Set the music file
+    // This will set the music file up
     public void setFile(URL name) {
         try {
             AudioInputStream sound = AudioSystem.getAudioInputStream(name);
             clip = AudioSystem.getClip();
             clip.open(sound);
         } catch (Exception e) {
-            e.printStackTrace();  // Print any errors that occur during loading
+            e.printStackTrace();  // This is tp print any errors that occur during loading
         }
     }
 
-    // Play the music from the beginning
+    //We want the music to play from the beginning so that's what is done here
     public void play(URL name) {
         if (clip != null) {
-            clip.setFramePosition(0);  // Reset to the start of the clip
-            clip.start();  // Start the music
+            clip.setFramePosition(0);  //This is to reset the music to the start of the clip
+            clip.start();  //This actually starts the music
         } else {
             System.out.println("Music clip not initialized.");
         }
     }
 
-    // Loop the music continuously
+    //We wanted to ensure we looped the music continuously
     public void loop(URL name) {
         if (clip != null) {
-            clip.loop(Clip.LOOP_CONTINUOUSLY);  // Loop the music
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
         } else {
             System.out.println("Music clip not initialized.");
         }
     }
 
-    // Stop the music
+    //This is for stopping the music
     public void stop(URL name) {
         if (clip != null) {
-            clip.stop();  // Stop the music playback
+            clip.stop();  
         } else {
             System.out.println("Music clip not initialized.");
         }
