@@ -1,5 +1,5 @@
 
-//  event01 holds the text in a public void function
+//  event01 holds the dialogue
 
 package Main;
 
@@ -7,7 +7,7 @@ import Event.Event01;
 import javax.swing.*;
 import java.awt.*;
 
-import java.net.URL;  // Add this line
+import java.net.URL;  
 
 
 public class GameManager {
@@ -21,8 +21,8 @@ public class GameManager {
     Music music = new Music();
     SE se = new SE();
 
-    public URL ethMusic = getClass().getClassLoader().getResource("resources/EthernightClub.wav");  // Path to your song file
-    public URL clickSound = getClass().getClassLoader().getResource("resources/click.wav");  // Path to your click sound file
+    public URL ethMusic = getClass().getClassLoader().getResource("resources/EthernightClub.wav");  
+    public URL clickSound = getClass().getClassLoader().getResource("resources/click.wav");  
     public URL currentMusic;
 
     public static void main(String[] args) {
